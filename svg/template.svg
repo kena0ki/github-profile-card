@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="200">
+  <style>
+  /*! CSS Used from: Embedded */
+  .octicon{display:inline-block;vertical-align:text-top;fill:currentColor;}
+  a{background-color:initial;}
+  a:active,a:hover{outline-width:0;}
+  img{border-style:none;}
+  svg:not(:root){overflow:hidden;}
+  input{font:inherit;margin:0;}
+  input{overflow:visible;}
+  [type=submit]{-webkit-appearance:button;}
+  [type=submit]::-moz-focus-inner{border-style:none;padding:0;}
+  [type=submit]:-moz-focusring{outline:1px dotted ButtonText;}
+  ::-webkit-input-placeholder{color:inherit;opacity:.54;}
+  *{box-sizing:border-box;}
+  input{font-family:inherit;font-size:inherit;line-height:inherit;}
+  a{color:#0366d6;text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  p{margin-top:0;margin-bottom:10px;}
+  .octicon{vertical-align:text-bottom;}
+  .btn{position:relative;display:inline-block;padding:6px 12px;font-size:14px;font-weight:600;line-height:20px;white-space:nowrap;vertical-align:middle;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-repeat:repeat-x;background-position:-1px -1px;background-size:110% 110%;border:1px solid rgba(27,31,35,.2);border-radius:.25em;-webkit-appearance:none;-moz-appearance:none;appearance:none;}
+  .btn:hover{text-decoration:none;background-repeat:repeat-x;}
+  .btn:focus{outline:0;}
+  .btn:disabled{cursor:default;background-position:0 0;}
+  .btn:active{background-image:none;}
+  .btn{color:#24292e;background-color:#eff3f6;background-image:linear-gradient(-180deg,#fafbfc,#eff3f6 90%);}
+  .btn:focus{box-shadow:0 0 0 .2em rgba(3,102,214,.3);}
+  .btn:hover{background-color:#e6ebf1;background-image:linear-gradient(-180deg,#f0f3f6,#e6ebf1 90%);background-position:-.5em;border-color:rgba(27,31,35,.35);}
+  .btn:active{background-color:#e9ecef;background-image:none;border-color:rgba(27,31,35,.35);box-shadow:inset 0 .15em .3em rgba(27,31,35,.15);}
+  .btn:disabled{color:rgba(36,41,46,.4);background-color:#eff3f6;background-image:none;border-color:rgba(27,31,35,.2);box-shadow:none;}
+  .btn-sm{padding:3px 10px;font-size:12px;line-height:20px;}
+  :-ms-input-placeholder{color:#6a737d;}
+  ::-ms-input-placeholder{color:#6a737d;}
+  ::placeholder{color:#6a737d;}
+  .col-2{width:16.66667%;}
+  .col-9{width:75%;}
+  .col-12{width:100%;}
+  @media (min-width:1012px){
+  .col-lg-1{width:8.33333%;}
+  }
+  .border-bottom{border-bottom:1px solid #e1e4e8!important;}
+  .border-gray-light{border-color:#eaecef!important;}
+  .text-gray{color:#586069!important;}
+  .link-gray{color:#586069!important;}
+  .link-gray:hover{color:#0366d6!important;}
+  .link-gray-dark{color:#24292e!important;}
+  .link-gray-dark:hover{color:#0366d6!important;}
+  .v-align-top{vertical-align:top!important;}
+  .width-full{width:100%!important;}
+  .mb-0{margin-bottom:0!important;}
+  .mb-1{margin-bottom:4px!important;}
+  .mb-2{margin-bottom:8px!important;}
+  .mr-3{margin-right:16px!important;}
+  .pl-1{padding-left:4px!important;}
+  .pr-3{padding-right:16px!important;}
+  .py-4{padding-top:24px!important;padding-bottom:24px!important;}
+  .f4{font-size:16px!important;}
+  @media (min-width:768px){
+  .f4{font-size:16px!important;}
+  }
+  .text-small{font-size:12px!important;}
+  .text-right{text-align:right!important;}
+  .no-underline{text-decoration:none!important;}
+  .d-inline-block{display:inline-block!important;}
+  .d-table{display:table!important;}
+  .d-table-cell{display:table-cell!important;}
+  .table-fixed{table-layout:fixed!important;}
+  /*! CSS Used from: Embedded */
+  .avatar{display:inline-block;overflow:hidden;line-height:1;vertical-align:middle;border-radius:3px;}
+  @media print{
+  .btn:not(.btn-outline){color:#24292e!important;background:none;}
+  p{page-break-inside:avoid;}
+  }
+  .user-following-container .follow,.user-following-container.on .unfollow{display:inline-block;}
+  .user-following-container.on .follow,.user-following-container .unfollow{display:none;}
+  </style>
+  <foreignObject x="40" y="40" width="500" height="300">
+    <div xmlns="http://www.w3.org/1999/xhtml"
+      class="d-table table-fixed col-12 width-full py-4 border-bottom border-gray-light" >
+        <div class="d-table-cell col-2 col-lg-1 v-align-top">
+            <a class="d-inline-block" data-hovercard-type="user" data-hovercard-url="/users/kena0ki/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/kena0ki"><img class="avatar" height="50" width="50" alt="@kena0ki" src="./avatar.png"/></a>
+        </div>
+
+        <div class="d-table-cell col-9 v-align-top pr-3">
+            <a class="d-inline-block no-underline mb-1" data-hovercard-type="user" data-hovercard-url="/users/kena0ki/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/kena0ki">
+                <span class="f4 link-gray-dark">Ken Aoki</span>
+                <span class="link-gray pl-1">kena0ki</span>
+            </a>
+
+            <div class="text-gray text-small mb-2">
+                <div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Sed mollis mollis mi ut ultricies. Nullam magna ipsum,
+                porta vel dui convallis, rutrum imperdiet eros. Aliquam
+                erat volutpat.
+                </div>
+            </div>
+
+            <p class="text-gray text-small mb-0">
+                <span class="mr-3">
+                  <svg xmlns="http://www.w3.org/2000/svg"
+                    class="octicon octicon-organization" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16 12.999c0 .439-.45 1-1 1H7.995c-.539 0-.994-.447-.995-.999H1c-.54 0-1-.561-1-1 0-2.634 3-4 3-4s.229-.409 0-1c-.841-.621-1.058-.59-1-3 .058-2.419 1.367-3 2.5-3s2.442.58 2.5 3c.058 2.41-.159 2.379-1 3-.229.59 0 1 0 1s1.549.711 2.42 2.088C9.196 9.369 10 8.999 10 8.999s.229-.409 0-1c-.841-.62-1.058-.59-1-3 .058-2.419 1.367-3 2.5-3s2.437.581 2.495 3c.059 2.41-.158 2.38-1 3-.229.59 0 1 0 1s3.005 1.366 3.005 4z"></path>
+                  </svg> heaven
+                </span>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  class="octicon octicon-location" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M6 0C2.69 0 0 2.5 0 5.5 0 10.02 6 16 6 16s6-5.98 6-10.5C12 2.5 9.31 0 6 0zm0 14.55C4.14 12.52 1 8.44 1 5.5 1 3.02 3.25 1 6 1c1.34 0 2.61.48 3.56 1.36.92.86 1.44 1.97 1.44 3.14 0 2.94-3.14 7.02-5 9.05zM8 5.5c0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2 1.11 0 2 .89 2 2z"></path>
+                </svg> .jp
+            </p>
+        </div>
+    </div>
+  </foreignObject>
+</svg>
