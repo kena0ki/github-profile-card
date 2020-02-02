@@ -26,7 +26,7 @@ func init() {
 		port = ":8080"
 	}
 	Port = port
-	LogLevel = os.Getenv("Log_Level")
+	LogLevel = os.Getenv("LOG_LEVEL")
 	GithubClientID = os.Getenv("GITHUB_CLIENT_ID")
 	GithubSecret = os.Getenv("GITHUB_SECRET")
 }

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="500" height="150">
+<svg xmlns="http://www.w3.org/2000/svg" width="{{.QP.Width}}" height="{{.QP.Height}}">
   <style>
   /*! CSS Used from: Embedded */
   .octicon{display:inline-block;vertical-align:text-top;fill:currentColor;}
@@ -11,7 +11,7 @@
   a:hover{text-decoration:underline;}
   p{margin-top:0;margin-bottom:10px;}
   .octicon{vertical-align:text-bottom;}
-  .col-2{width:60px;} // fixed value for avatar
+  .col-2{/*width: 16.66667%;*/ width:60px;} // fixed value for avatar
   .col-9{width:75%;}
   .col-12{width:100%;}
   .border{border:1px solid #e1e4e8!important;}
@@ -42,46 +42,45 @@
   .d-table-cell{display:table-cell!important;}
   .table-fixed{table-layout:fixed!important;}
   .avatar{display:inline-block;overflow:hidden;line-height:1;vertical-align:middle;border-radius:3px;}
-  .user-following-container .follow,.user-following-container.on .unfollow{display:inline-block;}
-  .user-following-container.on .follow,.user-following-container .unfollow{display:none;}
   </style>
-  <foreignObject x="2" y="2" width="90%" height="90%">
+  <foreignObject width="100%" height="100%">
     <div xmlns="http://www.w3.org/1999/xhtml"
-      class="d-table table-fixed col-12 width-full p-2 border border-gray-light" >
+      class="d-table table-fixed col-12 width-full p-2 border border-gray-light"
+      style="width:{{.QP.Width}}px; height:{{.QP.Height}}px;" > <!-- Workaround: Chrome doesn't inherit foreinObject height when set height with '%' -->
         <div class="d-table-cell col-2 v-align-top">
-            <a class="d-inline-block" data-hovercard-type="user" data-hovercard-url="/users/kena0ki/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/{{.Login}}" target="_blank" ><img class="avatar" height="50" width="50" alt="{{.Login}}" src="{{.AvatarURL}}" /></a>
+            <a class="d-inline-block" data-hovercard-type="user" data-hovercard-url="/users/kena0ki/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/{{.User.Login}}" target="_blank" ><img class="avatar" height="50" width="50" alt="{{.User.Login}}" src="data:image/png;base64,{{.User.AvatarURLBase64}}" /></a>
         </div>
 
         <div class="d-table-cell col-9 v-align-top pr-3">
-            <a class="d-inline-block no-underline mb-1" data-hovercard-type="user" data-hovercard-url="/users/kena0ki/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/{{.Login}}" target="_blank" >
-                <span class="f4 link-gray-dark">{{.Name}}</span>
-                <span class="link-gray pl-1">{{.Login}}</span>
+            <a class="d-inline-block no-underline mb-1" data-hovercard-type="user" data-hovercard-url="/users/kena0ki/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/{{.User.Login}}" target="_blank" >
+                <span class="f4 link-gray-dark">{{.User.Name}}</span>
+                <span class="link-gray pl-1">{{.User.Login}}</span>
             </a>
 
             <div class="text-gray text-small mb-2">
                 <div>
-                {{.Bio}}
+                {{.User.Bio}}
                 </div>
             </div>
 
             <p class="text-gray text-small mb-0">
-                {{if .Company}}
+                {{if .User.Company}}
                 <span class="mr-3">
                   <div style="display: inline-block; width: 16px; height: 16px" > <!-- Workaround: Chrome not recognizes width and height in svg tag when nested by foreignObject -->
                     <svg xmlns="http://www.w3.org/2000/svg"
                       class="octicon octicon-organization" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
                       <path fill-rule="evenodd" d="M16 12.999c0 .439-.45 1-1 1H7.995c-.539 0-.994-.447-.995-.999H1c-.54 0-1-.561-1-1 0-2.634 3-4 3-4s.229-.409 0-1c-.841-.621-1.058-.59-1-3 .058-2.419 1.367-3 2.5-3s2.442.58 2.5 3c.058 2.41-.159 2.379-1 3-.229.59 0 1 0 1s1.549.711 2.42 2.088C9.196 9.369 10 8.999 10 8.999s.229-.409 0-1c-.841-.62-1.058-.59-1-3 .058-2.419 1.367-3 2.5-3s2.437.581 2.495 3c.059 2.41-.158 2.38-1 3-.229.59 0 1 0 1s3.005 1.366 3.005 4z"></path>
                     </svg>
-                  </div> {{.Company}}
+                  </div> {{.User.Company}}
                 </span>
                 {{end}}
-                {{if .Location}}
-                <div style="display: inline-block; width: 16px; height: 16px" > <!-- Workaround: Chrome not recognizes width and height in svg tag when nested by foreignObject -->
+                {{if .User.Location}}
+                <div style="display: inline-block; width: 16px; height: 16px" > <!-- Workaround: Chrome doesn't recognize width and height in svg tag when nested by foreignObject -->
                   <svg xmlns="http://www.w3.org/2000/svg"
                     class="octicon octicon-location" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true">
                     <path fill-rule="evenodd" d="M6 0C2.69 0 0 2.5 0 5.5 0 10.02 6 16 6 16s6-5.98 6-10.5C12 2.5 9.31 0 6 0zm0 14.55C4.14 12.52 1 8.44 1 5.5 1 3.02 3.25 1 6 1c1.34 0 2.61.48 3.56 1.36.92.86 1.44 1.97 1.44 3.14 0 2.94-3.14 7.02-5 9.05zM8 5.5c0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2 1.11 0 2 .89 2 2z"></path>
                   </svg>
-                </div> {{.Location}}
+                </div> {{.User.Location}}
                 {{end}}
             </p>
         </div>

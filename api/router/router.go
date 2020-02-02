@@ -4,8 +4,8 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	l "github.com/google/logger"
-	"github.com/kena0ki/github-profile-card/server/handler"
+	"github.com/google/logger"
+	"github.com/kena0ki/github-profile-card/api/handler"
 	"golang.org/x/time/rate"
 )
 
@@ -16,13 +16,14 @@ func InitRouter() *gin.Engine {
 	limiter := rate.NewLimiter(rate.Limit(1), 50)
 	router.Use(func(c *gin.Context) {
 		if err := limiter.Wait(c); err != nil {
-			l.Warningf("To many requests, %v", c.Request)
-			c.JSON(http.StatusTooManyRequests, "To many requests, Please wait for a while")
+			logger.Warningf("Too many requests, %v", c.Request)
+			c.JSON(http.StatusTooManyRequests, "Too many requests, please wait for a while")
 			c.Abort()
 		}
 		c.Next()
 	})
 
+	router.GET("/", handler.GetSampleHtml)
 	router.GET("/api/github/:user", handler.GetSVG)
 	return router
 }

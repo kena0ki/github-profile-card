@@ -33,4 +33,17 @@ type User struct {
 	Following         uint   `json:"following"`
 	CreatedAt         string `json:"created_at"`
 	UpdatedAt         string `json:"updated_at"`
+	AvatarURLBase64   string
+}
+
+// QueryParam has query parameters
+type QueryParam struct {
+	Width  string `json:"width"`
+	Height string `json:"height"`
+}
+
+// ProfileCardData has data for profile template
+type ProfileCardData struct {
+	User User
+	QP   QueryParam
 }
