@@ -21,9 +21,9 @@ const (
 )
 
 func init() {
-	port := os.Getenv("API_PORT")
+	port := os.Getenv("PORT")
 	if port == "" {
-		port = ":8080"
+		port = ":8090"
 	}
 	Port = port
 	LogLevel = os.Getenv("LOG_LEVEL")
