@@ -44,7 +44,11 @@ func init() {
 	println(sampleHtmlPath) // TODO use logger
 	dat, err := ioutil.ReadFile(sampleHtmlPath)
 	if err == nil {
-		sampleHtml = strings.ReplaceAll(string(dat), hostName, "localhost"+env.Port)
+		if env.GinMode == "release" {
+			sampleHtml = string(dat)
+		} else {
+			sampleHtml = strings.ReplaceAll(string(dat), hostName, "localhost"+env.Port)
+		}
 	}
 }
 

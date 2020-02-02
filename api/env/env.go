@@ -9,6 +9,8 @@ var (
 	Port string
 	// LogLevel - logging level.
 	LogLevel string
+	// GinMode - running mode.
+	GinMode string
 	// GithubClientID - github client id.
 	GithubClientID string
 	// GithubSecret - github client id.
@@ -27,6 +29,7 @@ func init() {
 	}
 	Port = port
 	LogLevel = os.Getenv("LOG_LEVEL")
+	GinMode = os.Getenv("GIN_MODE")
 	GithubClientID = os.Getenv("GITHUB_CLIENT_ID")
 	GithubSecret = os.Getenv("GITHUB_SECRET")
 }
