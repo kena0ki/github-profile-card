@@ -2,7 +2,6 @@ package main // import "github.com/kena0ki/github-profile-card"
 
 import (
 	"context"
-	_ "image/jpeg"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -11,14 +10,14 @@ import (
 	"syscall"
 	"time"
 
-	l "github.com/google/logger"
-	"github.com/kena0ki/github-profile-card/server/env"
-	"github.com/kena0ki/github-profile-card/server/router"
+	"github.com/google/logger"
+	"github.com/kena0ki/github-profile-card/api/env"
+	"github.com/kena0ki/github-profile-card/api/router"
 )
 
 func main() {
-	l.SetFlags(log.LstdFlags)
-	defer l.Init("Logger", true, false, ioutil.Discard).Close()
+	logger.SetFlags(log.LstdFlags)
+	defer logger.Init("Logger", true, false, ioutil.Discard).Close()
 
 	r := router.InitRouter()
 
@@ -29,9 +28,9 @@ func main() {
 
 	go func() {
 		// service connections
-		l.Info("About to start server on " + env.Port)
+		logger.Info("About to start server on " + env.Port)
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			l.Error("Listen: %s\n", err)
+			logger.Error("Listen: %s\n", err)
 		}
 	}()
 
@@ -43,12 +42,12 @@ func main() {
 	// kill -9 is syscall.SIGKILL but can't be catch, so don't need add it
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 	<-quit
-	l.Info("Shutdown Server ...")
+	logger.Info("Shutdown Server ...")
 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	if err := srv.Shutdown(ctx); err != nil {
-		l.Error("Server Shutdown: ", err)
+		logger.Error("Server Shutdown: ", err)
 	}
-	l.Info("Server exiting")
+	logger.Info("Server exiting")
 }
