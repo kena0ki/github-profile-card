@@ -1,0 +1,4 @@
+tasks: 
+  - init: ": Nothing to do"
+#  - init: go get && go build ./... && go test ./...
+#    command: go run
