@@ -1,4 +1,4 @@
-.PHONY: build, up, down, test, cover
+.PHONY: dev, build, up, down, test, cover
 
 dev:
 	docker-compose run --rm --service-ports api bash
