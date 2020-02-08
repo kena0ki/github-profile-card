@@ -9,4 +9,4 @@ services:
       LOG_LEVEL: ERROR
       GIN_MODE: release
     volumes:
-      - ./:/api
+      - ./:/workspace
