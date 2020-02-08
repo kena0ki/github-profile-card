@@ -113,7 +113,6 @@ func GetSVG(c *gin.Context) {
 }
 
 func GetSampleHtml(c *gin.Context) {
-	logger.Infoln(sampleHtml)
 	if sampleHtml == "" {
 		c.JSON(http.StatusNotFound, "No sample provided")
 	}
