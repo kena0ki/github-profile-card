@@ -6,7 +6,7 @@ This is source code repository for web API which serves github profile card.
 The web API creates cards on each request, currently with no cache, so cards displayed on the client is always up to date.  
 ## Usage
 ### Endpoint
-https://gpc.znoo.xyz/api/ :username
+`https://gpc.znoo.xyz/api/github/:username`
 ### Query parameters
 Currently, following parameters are available.   
  * width: width of the card
