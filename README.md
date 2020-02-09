@@ -1,18 +1,22 @@
 # github-profile-card
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/kena0ki/github-profile-card) 
 
-This repository is kind of like user profile version of [gh-card](https://github.com/nwtgck/gh-card).  
-The URL for image triggers the server to create a new SVG image, so the card displayed is up to date.  
-## How to use
-Just put a link on your web site. The sample page is [here](https://gpc.znoo.xyz/).  
-All you need is a normal URL, so this can not only be used for HTML but for Markdown, like this:  
-[![kena0ki](https://gpc.znoo.xyz/api/github/kena0ki.svg)](https://github.com/kena0ki)
+Note: This repository is kind of like user profile version of [gh-card](https://github.com/nwtgck/gh-card).  
+This is source code repository for web API which serves github profile card.  
+The web API creates cards on each request, currently with no cache, so cards displayed on the client is always up to date.  
+## Usage
+### Endpoint
+https://gpc.znoo.xyz/api/ :username
 ### Query parameters
-Currently, following parameters are available   
+Currently, following parameters are available.   
  * width: width of the card
  * height: height of the card
+### Sample
+The sample page is [here](https://gpc.znoo.xyz/).  
+All you need is a normal URL, so this can also be used for Markdown, like this:  
+[![kena0ki](https://gpc.znoo.xyz/api/github/kena0ki.svg)](https://github.com/kena0ki)
 ## Development
-* Gitpod: Click the above badge  
+* Gitpod: Click the above Gitpod badge  
 * Vim:  
 ```bash
 make dev
