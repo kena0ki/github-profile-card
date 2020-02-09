@@ -8,7 +8,7 @@ The web API creates cards on each request, currently with no cache, so cards dis
 ### Endpoint
 `https://gpc.znoo.xyz/api/github/:username`
 ### Query parameters
-Currently, following parameters are available.   
+Currently, following parameters are available.  
  * width: width of the card
  * height: height of the card
 ### Sample

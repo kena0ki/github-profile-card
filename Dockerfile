@@ -10,4 +10,4 @@ RUN apt-get update \
     && apt-get autoremove -y \
     && apt-get clean -y
 
-CMD cd api && go run main.go
+CMD cd api && go run main.go > app.log 2>&1
