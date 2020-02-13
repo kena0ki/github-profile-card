@@ -23,7 +23,8 @@ func InitRouter() *gin.Engine {
 		c.Next()
 	})
 
-	router.GET("/", handler.GetSampleHtml)
-	router.GET("/api/github/:user", handler.GetSVG)
+	router.GET("/", handler.SamplePage)
+	router.GET("/api/github/:user", handler.GitHubProfileCard)
+	router.HEAD("/api/github/:user", handler.GitHubProfileCard) // For Edge, which uses HEAD method for some reason 
 	return router
 }

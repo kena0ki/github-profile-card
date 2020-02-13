@@ -6,20 +6,24 @@
 <h3>https://gpc.znoo.xyz/api/github/kena0ki.svg</h3>
 &lt;object&gt;
 <div>
-  <object type="image/svg+xml" data="https://gpc.znoo.xyz/api/github/kena0ki.svg" />
+  <object type="image/svg+xml" data="/api/github/kena0ki.svg" >
   <!-- You may want to add fallback here. https://stackoverflow.com/questions/4476526/do-i-use-img-object-or-embed-for-svg-files -->
   </object>
 </div>
 &lt;img&gt;
-<div><img src="https://gpc.znoo.xyz/api/github/kena0ki.svg" /></div>
+<div><img src="/api/github/kena0ki.svg" /></div>
 <h3>https://gpc.znoo.xyz/api/github/octocat.svg?height=70&width=260</h3>
 &lt;object&gt;
 <div>
-  <object type="image/svg+xml" data="https://gpc.znoo.xyz/api/github/octocat.svg?height=70&width=260" />
+  <object type="image/svg+xml" data="/api/github/octocat.svg?height=70&width=260" >
   <!-- You may want to add fallback here. https://stackoverflow.com/questions/4476526/do-i-use-img-object-or-embed-for-svg-files -->
   </object>
 </div>
 &lt;img&gt;
-<div><img src="https://gpc.znoo.xyz/api/github/octocat.svg?height=70&width=260" /></div>
+<div><img src="/api/github/octocat.svg?height=70&width=260" /></div>
+<script>
+const body = document.querySelector('body')
+body.innerHTML = body.innerHTML.replace(/https:\/\/gpc\.znoo\.xyz/g, location.origin)
+</script>
 </body>
 </html>

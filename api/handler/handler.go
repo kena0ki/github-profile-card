@@ -6,6 +6,7 @@ import (
 	"encoding/base64"
 	"fmt"
 	"html/template"
+	"io"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -21,16 +22,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// ErrorResponse is common errror response format.
-type ErrorResponse struct {
-	Message string `json:"message"`
-}
-
-const hostName string = "gpc.znoo.xyz"
-
 var dir string
 var svgTmplPath string
-var sampleHtml string
+var sampleHTML string
 
 func init() {
 	var err error
@@ -40,44 +34,57 @@ func init() {
 		panic(err)
 	}
 	svgTmplPath = filepath.Join(dir, "svg/*.tmpl")
-	sampleHtmlPath := filepath.Join(dir, "../samples/sample.html")
-	println(sampleHtmlPath) // TODO use logger
-	dat, err := ioutil.ReadFile(sampleHtmlPath)
+	sampleHTMLPath := filepath.Join(dir, "../samples/sample.html")
+	println(sampleHTMLPath) // TODO use logger
+	dat, err := ioutil.ReadFile(sampleHTMLPath)
 	if err == nil {
-		if env.GinMode == "release" {
-			sampleHtml = string(dat)
-		} else {
-			sampleHtml = strings.ReplaceAll(string(dat), hostName, "localhost"+env.Port)
-		}
+		sampleHTML = string(dat)
 	}
 }
 
-func handleError(err error, c *gin.Context, ch chan struct{}) {
-	logger.Error(err)
-	c.JSON(http.StatusInternalServerError, ErrorResponse{
-		Message: err.Error(),
-	})
-	ch <- struct{}{}
-	return
-}
-
-// GetSVG creates GitHub SVG Card.
-func GetSVG(c *gin.Context) {
+// GitHubProfileCard responds GitHub profile card in SVG format.
+func GitHubProfileCard(c *gin.Context) {
 	ctx, cancel := context.WithTimeout(c.Request.Context(), env.Timeout*time.Second)
 	defer cancel()
-	doneCh := make(chan struct{})
+	type okObjType struct {
+		contentLength int64
+		contentType   string
+		reader        io.Reader
+		extraHeader   map[string]string
+	}
+	type errObjType struct {
+		Message string `json:"message"`
+	}
+	type respType struct {
+		code   int
+		okObj  okObjType
+		errObj errObjType
+	}
+	doneCh := make(chan respType)
 
 	go func() {
 		userName := strings.Replace(c.Param("user"), ".svg", "", 1)
 		logger.Info(userName)
 		user, err := github.GetUserData(ctx, userName)
 		if err != nil {
-			handleError(err, c, doneCh)
+			logger.Error(err)
+			doneCh <- respType{
+				code: http.StatusInternalServerError,
+				errObj: errObjType{
+					Message: err.Error(),
+				},
+			}
 			return
 		}
 		avatar, err := github.GetAvatar(ctx, user.AvatarURL)
 		if err != nil {
-			handleError(err, c, doneCh)
+			logger.Error(err)
+			doneCh <- respType{
+				code: http.StatusInternalServerError,
+				errObj: errObjType{
+					Message: err.Error(),
+				},
+			}
 			return
 		}
 		user.AvatarURLBase64 = base64.StdEncoding.EncodeToString(avatar)
@@ -92,17 +99,35 @@ func GetSVG(c *gin.Context) {
 		buffer := new(bytes.Buffer)
 		err = tmpl.Execute(buffer, profileDate)
 		if err != nil {
-			handleError(err, c, doneCh)
+			logger.Error(err)
+			doneCh <- respType{
+				code: http.StatusInternalServerError,
+				errObj: errObjType{
+					Message: err.Error(),
+				},
+			}
 			return
 		}
-		c.DataFromReader(http.StatusOK, int64(len(buffer.Bytes())), "image/svg+xml; charset=UTF-8", buffer, map[string]string{})
-		doneCh <- struct{}{}
+		doneCh <- respType{
+			code: http.StatusOK,
+			okObj: okObjType{
+				contentLength: int64(len(buffer.Bytes())),
+				contentType:   "image/svg+xml; charset=UTF-8",
+				reader:        buffer,
+				extraHeader:   map[string]string{},
+			},
+		}
 		return
 	}()
 
 	select {
-	case <-doneCh:
-		return
+	case resp := <-doneCh:
+		if resp.code == http.StatusOK {
+			c.DataFromReader(resp.code, resp.okObj.contentLength,
+				resp.okObj.contentType, resp.okObj.reader, resp.okObj.extraHeader)
+		} else {
+			c.JSON(resp.code, resp.errObj)
+		}
 	case <-ctx.Done():
 		msg := fmt.Sprintf("Processing timed out in %d seconds", env.Timeout)
 		logger.Error(msg)
@@ -112,10 +137,11 @@ func GetSVG(c *gin.Context) {
 	}
 }
 
-func GetSampleHtml(c *gin.Context) {
-	if sampleHtml == "" {
+// SamplePage responds sample page.
+func SamplePage(c *gin.Context) {
+	if sampleHTML == "" {
 		c.JSON(http.StatusNotFound, "No sample provided")
 	}
 	// TODO Is this right usage?
-	c.Writer.WriteString(sampleHtml)
+	c.Writer.WriteString(sampleHTML)
 }
