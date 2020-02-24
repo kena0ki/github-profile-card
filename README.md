@@ -13,18 +13,18 @@ Currently, following parameters are available.
  * height: height of the card
 ### Sample
 The sample page is [here](https://gpc.znoo.xyz/).  
-All you need is a normal URL, so this can also be used for Markdown, like this:  
-[![kena0ki](https://gpc.znoo.xyz/api/github/kena0ki.svg)](https://github.com/kena0ki)
+All you need is a normal URL, so this can also be used for Markdown, like the image in [the Author section](#Author).  
 ## Development
 * Gitpod: Click the above Gitpod badge  
-* Vim:  
-```bash
-make dev
-```
+* Vim: Run `make dev` or `docker-compose run --rm --service-ports api bash`
 * VS Code: Open this repository by VS Code (Remote Development Extension is needed)  
 ## This repository is inspired by
 * [gh-card](https://github.com/nwtgck/gh-card)
 * [GitHub Link Card Creator](https://github.com/po3rin/github_link_creator)
 * [Unofficial GitHub Cards](https://github.com/lepture/github-cards)
+
+## Author
+[![kena0ki](https://gpc.znoo.xyz/api/github/kena0ki.svg)](https://github.com/kena0ki)
+
 ## License
 MIT  

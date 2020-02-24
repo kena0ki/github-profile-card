@@ -13,6 +13,7 @@ import (
 func InitRouter() *gin.Engine {
 	router := gin.Default()
 
+	router.Static("/assets", "../samples/assets") // TODO base directory
 	limiter := rate.NewLimiter(rate.Limit(1), 50)
 	router.Use(func(c *gin.Context) {
 		if err := limiter.Wait(c); err != nil {
@@ -25,6 +26,6 @@ func InitRouter() *gin.Engine {
 
 	router.GET("/", handler.SamplePage)
 	router.GET("/api/github/:user", handler.GitHubProfileCard)
-	router.HEAD("/api/github/:user", handler.GitHubProfileCard) // For Edge, which uses HEAD method for some reason 
+	router.HEAD("/api/github/:user", handler.GitHubProfileCard) // For Edge, which uses HEAD method for some reason
 	return router
 }
