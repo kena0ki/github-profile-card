@@ -22,24 +22,17 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-var dir string
+var root string
 var svgTmplPath string
-var sampleHTML string
 
 func init() {
 	var err error
 	// TODO get root directory
-	dir, err = os.Getwd()
+	root, err = os.Getwd()
 	if err != nil {
 		panic(err)
 	}
-	svgTmplPath = filepath.Join(dir, "svg/*.tmpl")
-	sampleHTMLPath := filepath.Join(dir, "../samples/sample.html")
-	println(sampleHTMLPath) // TODO use logger
-	dat, err := ioutil.ReadFile(sampleHTMLPath)
-	if err == nil {
-		sampleHTML = string(dat)
-	}
+	svgTmplPath = filepath.Join(root, "svg/*.tmpl")
 }
 
 // GitHubProfileCard responds GitHub profile card in SVG format.
@@ -139,9 +132,12 @@ func GitHubProfileCard(c *gin.Context) {
 
 // SamplePage responds sample page.
 func SamplePage(c *gin.Context) {
-	if sampleHTML == "" {
+	sampleHTMLPath := filepath.Join(root, "../samples/sample.html")
+	logger.Info(sampleHTMLPath) // TODO use logger
+	dat, err := ioutil.ReadFile(sampleHTMLPath)
+	if err != nil {
 		c.JSON(http.StatusNotFound, "No sample provided")
 	}
 	// TODO Is this right usage?
-	c.Writer.WriteString(sampleHTML)
+	c.Writer.WriteString(string(dat))
 }
